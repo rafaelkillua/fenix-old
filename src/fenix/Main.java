@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("views/home.fxml"));
         primaryStage.setTitle("Fênix Convites - Gerenciador de Finanças");
         primaryStage.setScene(new Scene(root, 1024, 768));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

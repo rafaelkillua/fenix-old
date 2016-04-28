@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fenix.controllers.Controller">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="459.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="341.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="560.0" minHeight="10.0" prefHeight="534.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="558.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TableView fx:id="tabelaAnos" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn prefWidth="40.0" text="ID" />
+          <TableColumn prefWidth="140.0" text="Ano" />
+            <TableColumn prefWidth="160.0" text="Saldo" />
+        </columns>
+      </TableView>
+      <Label fx:id="labelAnoAtual" text="Ano Atual" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label fx:id="labelAnos" text="Anos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <TableView fx:id="tabelaAnoAtual" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn prefWidth="40.0" text="ID" />
+          <TableColumn prefWidth="137.0" text="Mês" />
+            <TableColumn prefWidth="140.0" text="Entradas" />
+            <TableColumn prefWidth="141.0" text="Saídas" />
+        </columns>
+      </TableView>
+      <Button fx:id="botaoFecharAno" mnemonicParsing="false" text="Fechar Ano" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharStage" text="Fechar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+   </children>
+</GridPane>

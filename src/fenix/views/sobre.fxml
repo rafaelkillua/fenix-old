@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fenix.controllers.Controller">
+   <children>
+      <Button fx:id="botaoAbrirSite" layoutX="251.0" layoutY="185.0" mnemonicParsing="false" onAction="#abrirSite" text="Site Pessoal" />
+      <Label layoutX="283.0" layoutY="42.0" text="Sobre" />
+      <Label layoutX="162.0" layoutY="116.0" text="Desenvolvido por Rafael Sampaio Tavares" />
+      <Button fx:id="botaoFechar" onAction="#fecharStage" layoutX="270.0" layoutY="342.0" mnemonicParsing="false" text="Fechar" />
+      <Label layoutX="200.0" layoutY="147.0" text="rafael.tavares@ccc.ufcg.edu.br" />
+   </children>
+</Pane>

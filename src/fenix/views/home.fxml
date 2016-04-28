@@ -117,9 +117,14 @@
             <Insets left="905.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="Visualizar por Ano" GridPane.rowIndex="3">
+      <Button fx:id="botaoVisualizarPorAno" mnemonicParsing="false" onAction="#abrirVisualizacaoPorAno" text="Visualizar por Ano" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="120.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="botaoSobre" mnemonicParsing="false" onAction="#abrirSobre" text="Sobre" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="450.0" />
          </GridPane.margin>
       </Button>
    </children>
