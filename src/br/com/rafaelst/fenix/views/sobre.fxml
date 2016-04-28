@@ -3,9 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.rafaelst.fenix.controllers.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.rafaelst.fenix.controllers.SobreController">
    <children>
-      <GridPane fx:id="gridPane" gridLinesVisible="true" prefHeight="300.0" prefWidth="400.0">
+      <GridPane fx:id="sobreGridPane" gridLinesVisible="true" prefHeight="300.0" prefWidth="400.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -28,8 +28,8 @@
                   <Insets top="75.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="botaoAbrirSite" mnemonicParsing="false" onAction="#abrirSite" text="Site Pessoal" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharJanela" text="X" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+            <Button mnemonicParsing="false" onAction="#abrirSite" text="Site Pessoal" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="sobreBotaoFechar" mnemonicParsing="false" onAction="#fecharJanela" text="X" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
          </children>
       </GridPane>
    </children>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<GridPane fx:id="gridPane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.rafaelst.fenix.controllers.Controller">
+<GridPane fx:id="anosGridPane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.rafaelst.fenix.controllers.AnosController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="459.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="341.0" />
@@ -15,22 +16,36 @@
    <children>
       <TableView fx:id="tabelaAnos" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID" />
-          <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Ano" />
-            <TableColumn prefWidth="160.0" resizable="false" text="Saldo" />
+            <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID">
+                <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colunaAno" prefWidth="140.0" resizable="false" sortable="false" text="Ano">
+                <cellValueFactory><PropertyValueFactory property="ano" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colunaSaldo" prefWidth="160.0" resizable="false" text="Saldo">
+                <cellValueFactory><PropertyValueFactory property="saldo" /></cellValueFactory>
+            </TableColumn>
         </columns>
       </TableView>
-      <Label fx:id="labelAnoAtual" text="Ano Atual" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-      <Label fx:id="labelAnos" text="Anos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label text="Ano Atual" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label text="Anos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <TableView fx:id="tabelaAnoAtual" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
         <columns>
-          <TableColumn editable="false" prefWidth="40.0" resizable="false" text="ID" />
-          <TableColumn prefWidth="137.0" resizable="false" sortable="false" text="Mês" />
-            <TableColumn prefWidth="140.0" resizable="false" text="Entradas" />
-            <TableColumn prefWidth="141.0" resizable="false" text="Saídas" />
+            <TableColumn editable="false" prefWidth="40.0" resizable="false" text="ID">
+                <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colunaMes" prefWidth="137.0" resizable="false" sortable="false" text="Mês">
+                <cellValueFactory><PropertyValueFactory property="mes" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colunaEntradas" prefWidth="140.0" resizable="false" text="Entradas">
+                <cellValueFactory><PropertyValueFactory property="entradas" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colunaSaidas" prefWidth="141.0" resizable="false" text="Saídas">
+                <cellValueFactory><PropertyValueFactory property="saidas" /></cellValueFactory>
+            </TableColumn>
         </columns>
       </TableView>
-      <Button fx:id="botaoFecharAno" mnemonicParsing="false" text="Fechar Ano" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharJanela" text="X" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+      <Button mnemonicParsing="false" text="Fechar Ano" onAction="#fecharAno" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Button fx:id="anosBotaoFechar" mnemonicParsing="false" onAction="#fecharJanela" text="X" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
    </children>
 </GridPane>
