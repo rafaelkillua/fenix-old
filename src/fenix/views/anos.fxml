@@ -17,19 +17,19 @@
    <children>
       <TableView fx:id="tabelaAnos" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn prefWidth="40.0" text="ID" />
-          <TableColumn prefWidth="140.0" text="Ano" />
-            <TableColumn prefWidth="160.0" text="Saldo" />
+          <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID" />
+          <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Ano" />
+            <TableColumn prefWidth="160.0" resizable="false" text="Saldo" />
         </columns>
       </TableView>
       <Label fx:id="labelAnoAtual" text="Ano Atual" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <Label fx:id="labelAnos" text="Anos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <TableView fx:id="tabelaAnoAtual" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
         <columns>
-          <TableColumn prefWidth="40.0" text="ID" />
-          <TableColumn prefWidth="137.0" text="Mês" />
-            <TableColumn prefWidth="140.0" text="Entradas" />
-            <TableColumn prefWidth="141.0" text="Saídas" />
+          <TableColumn editable="false" prefWidth="40.0" resizable="false" text="ID" />
+          <TableColumn prefWidth="137.0" resizable="false" sortable="false" text="Mês" />
+            <TableColumn prefWidth="140.0" resizable="false" text="Entradas" />
+            <TableColumn prefWidth="141.0" resizable="false" text="Saídas" />
         </columns>
       </TableView>
       <Button fx:id="botaoFecharAno" mnemonicParsing="false" text="Fechar Ano" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />

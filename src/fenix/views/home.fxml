@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fenix.controllers.Controller">
   <columnConstraints>
@@ -28,16 +30,24 @@
       </Label>
       <TabPane tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
         <tabs>
-          <Tab fx:id="tabelaEntrada" closable="false" text="Entrada">
+          <Tab closable="false" text="Entrada">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView editable="true" prefHeight="515.0" prefWidth="1024.0">
+                        <TableView fx:id="tabelaEntrada" editable="true" prefHeight="515.0" prefWidth="1024.0">
                           <columns>
-                            <TableColumn prefWidth="40.0" resizable="false" sortable="false" text="ID" />
-                            <TableColumn prefWidth="150.0" resizable="false" text="Data" />
-                              <TableColumn prefWidth="684.0" resizable="false" sortable="false" text="Histórico" />
-                              <TableColumn prefWidth="150.0" resizable="false" text="Valor" />
+                              <TableColumn fx:id="colunaID" prefWidth="40.0" resizable="false" sortable="false" text="ID">
+                                <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+                              </TableColumn>
+                              <TableColumn fx:id="colunaData" prefWidth="150.0" resizable="false" text="Data">
+                                <cellValueFactory><PropertyValueFactory property="data" /></cellValueFactory>
+                              </TableColumn>
+                              <TableColumn fx:id="colunaHistorico" prefWidth="684.0" resizable="false" sortable="false" text="Histórico">
+                                <cellValueFactory><PropertyValueFactory property="historico" /></cellValueFactory>
+                              </TableColumn>
+                              <TableColumn fx:id="colunaValor" prefWidth="149.0" resizable="false" text="Valor">
+                                <cellValueFactory><PropertyValueFactory property="valor" /></cellValueFactory>
+                              </TableColumn>
                           </columns>
                         </TableView>
                      </children>
@@ -127,5 +137,6 @@
             <Insets left="450.0" />
          </GridPane.margin>
       </Button>
+      <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharStage" prefHeight="0.0" prefWidth="0.0" text="X" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
    </children>
 </GridPane>

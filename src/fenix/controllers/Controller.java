@@ -1,11 +1,17 @@
 package fenix.controllers;
 
+import fenix.models.Entrada;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,8 +20,28 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable{
+
+    @FXML private TableView<Entrada> tabelaEntrada;
+
+    private ObservableList<Entrada> data = FXCollections.observableArrayList(
+            new Entrada(0, "antes de ontem", "venda", 10),
+            new Entrada(0, "ontem", "venda", 20),
+            new Entrada(0, "hoje", "venda", 30),
+            new Entrada(0, "amanha", "venda", 40),
+            new Entrada(0, "depois de amanha", "venda", 50)
+    );
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        for (int i = 0; i < 50; i++) {
+            data.add(new Entrada(i, String.valueOf(i*30), "oi", i*50));
+        }
+        tabelaEntrada.setItems(data);
+    }
 
     @FXML
     protected void fecharMes() {
@@ -89,7 +115,7 @@ public class Controller {
         }
     }
 
-    @FXML private javafx.scene.control.Button botaoFechar;
+    @FXML private Button botaoFechar;
 
     @FXML
     private void fecharStage(){
@@ -102,10 +128,10 @@ public class Controller {
             try {
                 Desktop.getDesktop().browse(uri);
             } catch (IOException e) {
-                criarAlertaErro("Erro de entrada", e.getMessage()).show();
+                criarAlertaErro("Erro de execução", e.getMessage()).show();
             }
         } else {
-            criarAlertaErro("Erro de entrada", "Não é possível abrir esse link nesse computador.");
+            criarAlertaErro("Erro de execução", "Não é possível abrir esse link nesse computador.").show();
         }
     }
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -14,6 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("Fênix Convites - Gerenciador de Finanças");
         primaryStage.setScene(new Scene(root, 1024, 768));
         primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
 
