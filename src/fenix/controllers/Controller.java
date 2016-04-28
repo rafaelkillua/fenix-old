@@ -1,9 +1,6 @@
 package fenix.controllers;
 
 import fenix.models.Entrada;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,20 +8,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable{
+public class Controller implements Initializable {
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @FXML private GridPane gridPane;
+    @FXML private Button botaoMinimizar;
+    @FXML private Button botaoFechar;
     @FXML private TableView<Entrada> tabelaEntrada;
 
     private ObservableList<Entrada> data = FXCollections.observableArrayList(
@@ -37,10 +44,34 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (int i = 0; i < 50; i++) {
-            data.add(new Entrada(i, String.valueOf(i*30), "oi", i*50));
+        try {
+            for (int i = 0; i < 50; i++) {
+                data.add(new Entrada(i, String.valueOf(i*30), "oi", i*50));
+            }
+            tabelaEntrada.setItems(data);
+
+            gridPane.setOnMousePressed(event -> {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            });
+            gridPane.setOnMouseDragged(event -> {
+                gridPane.getScene().getWindow().setX(event.getScreenX() - xOffset);
+                gridPane.getScene().getWindow().setY(event.getScreenY() - yOffset);
+            });
+        }catch (Exception e) {
         }
-        tabelaEntrada.setItems(data);
+    }
+
+    @FXML
+    protected void fecharJanela() {
+        Stage stage = (Stage) botaoFechar.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    protected void minimizarJanela() {
+        Stage stage = (Stage) botaoMinimizar.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML
@@ -79,13 +110,13 @@ public class Controller implements Initializable{
             Parent root1 = new FXMLLoader(getClass().getResource("/fenix/views/anos.fxml")).load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Fênix Convites - Visualização por Ano");
-            stage.setScene(new Scene(root1));
+            stage.setScene(new Scene(root1, 800, 600));
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
-            System.out.println("Erro " + e.getMessage());
+            System.out.println("Erro ao abrir Ano - " + e.getClass() + " - " + e.getMessage());
         }
     }
 
@@ -95,13 +126,13 @@ public class Controller implements Initializable{
             Parent root1 = new FXMLLoader(getClass().getResource("/fenix/views/sobre.fxml")).load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Fênix Convites - Sobre");
-            stage.setScene(new Scene(root1));
+            stage.setScene(new Scene(root1, 400, 300));
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
-            System.out.println("Erro " + e.getMessage());
+            System.out.println("Erro ao abrir Sobre - " + e.getClass() + " - " + e.getMessage());
         }
     }
 
@@ -113,14 +144,6 @@ public class Controller implements Initializable{
         } catch (URISyntaxException e) {
             criarAlertaErro("Erro de entrada", e.getMessage()).show();
         }
-    }
-
-    @FXML private Button botaoFechar;
-
-    @FXML
-    private void fecharStage(){
-        Stage stage = (Stage) botaoFechar.getScene().getWindow();
-        stage.close();
     }
 
     private void open(URI uri) {

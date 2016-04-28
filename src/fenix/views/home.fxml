@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.cell.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-
-<GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fenix.controllers.Controller">
-  <columnConstraints>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<GridPane fx:id="gridPane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fenix.controllers.Controller">
+    <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
@@ -137,6 +130,11 @@
             <Insets left="450.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharStage" prefHeight="0.0" prefWidth="0.0" text="X" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+      <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharJanela" prefHeight="0.0" prefWidth="0.0" text="X" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+      <Button fx:id="botaoMinimizar" mnemonicParsing="false" onAction="#minimizarJanela" text="_" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="28.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </GridPane>
