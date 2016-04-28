@@ -1,4 +1,4 @@
-package fenix.models;
+package br.com.rafaelst.fenix.models;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;

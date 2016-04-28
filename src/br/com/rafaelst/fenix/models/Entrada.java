@@ -1,4 +1,4 @@
-package fenix.models;
+package br.com.rafaelst.fenix.models;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -7,19 +7,17 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Created by Rafael on 28/04/2016.
  */
-public class Saida {
+public class Entrada {
     private final SimpleIntegerProperty id;
     private final SimpleStringProperty data;
     private final SimpleStringProperty historico;
-    private final SimpleDoubleProperty contas;
-    private final SimpleDoubleProperty depositos;
+    private final SimpleDoubleProperty valor;
 
-    private Saida(int id, String data, String historico, double contas, double depositos) {
+    public Entrada(int id, String data, String historico, double valor) {
         this.id = new SimpleIntegerProperty(id);
         this.data = new SimpleStringProperty(data);
         this.historico = new SimpleStringProperty(historico);
-        this.contas = new SimpleDoubleProperty(contas);
-        this.depositos = new SimpleDoubleProperty(depositos);
+        this.valor = new SimpleDoubleProperty(valor);
     }
 
     public int getId() {
@@ -46,19 +44,21 @@ public class Saida {
         this.historico.set(historico);
     }
 
-    public double getContas() {
-        return contas.get();
+    public double getValor() {
+        return valor.get();
     }
 
-    public void setContas(double valor) {
-        this.contas.set(valor);
+    public void setValor(double valor) {
+        this.valor.set(valor);
     }
 
-    public double getDepositos() {
-        return depositos.get();
-    }
-
-    public void setDepositos(double depositos) {
-        this.depositos.set(depositos);
+    @Override
+    public String toString() {
+        return "Entrada{" +
+                "id=" + id +
+                ", data=" + data +
+                ", historico=" + historico +
+                ", valor=" + valor +
+                '}';
     }
 }

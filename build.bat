@@ -1,0 +1,1 @@
+javapackager -deploy -native -outdir out/packages -outfile Fenix -srcdir out/artifacts/Fenix -srcfiles Fenix.jar -appclass br.com.rafaelst.fenix.Main -name "Fenix"

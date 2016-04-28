@@ -1,4 +1,4 @@
-package fenix;
+package br.com.rafaelst.fenix;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

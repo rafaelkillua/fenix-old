@@ -1,27 +1,31 @@
-package fenix.controllers;
+package br.com.rafaelst.fenix.controllers;
 
-import fenix.models.Entrada;
+import br.com.rafaelst.fenix.models.Entrada;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.converter.DoubleStringConverter;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -29,10 +33,17 @@ public class Controller implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    private final DecimalFormat formatadorDeDouble = new DecimalFormat("0.00");
+
     @FXML private GridPane gridPane;
     @FXML private Button botaoMinimizar;
     @FXML private Button botaoFechar;
+
+    @FXML private TextField campoTotalEntradas;
     @FXML private TableView<Entrada> tabelaEntrada;
+    @FXML private TableColumn colunaData;
+    @FXML private TableColumn colunaValor;
+    @FXML private TableColumn colunaHistorico;
 
     private ObservableList<Entrada> data = FXCollections.observableArrayList(
             new Entrada(0, "antes de ontem", "venda", 10),
@@ -49,7 +60,10 @@ public class Controller implements Initializable {
                 data.add(new Entrada(i, String.valueOf(i*30), "oi", i*50));
             }
             tabelaEntrada.setItems(data);
-
+        }catch (Exception e) {
+            System.out.println("Erro ao setar itens da tabela - " + e.getClass() + " - " + e.getMessage());
+        }
+        try {
             gridPane.setOnMousePressed(event -> {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
@@ -59,6 +73,54 @@ public class Controller implements Initializable {
                 gridPane.getScene().getWindow().setY(event.getScreenY() - yOffset);
             });
         }catch (Exception e) {
+            System.out.println("Erro do GridPane - " + e.getClass() + " - " + e.getMessage());
+        }
+
+        try {
+            colunaData.setCellFactory(TextFieldTableCell.forTableColumn());
+            colunaData.setOnEditCommit(
+                    new EventHandler<CellEditEvent<Entrada, String>>() {
+                        @Override
+                        public void handle(CellEditEvent<Entrada, String> t) {
+                            (t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                            ).setData(t.getNewValue());
+                        }
+                    }
+            );
+
+            colunaHistorico.setCellFactory(TextFieldTableCell.forTableColumn());
+            colunaHistorico.setOnEditCommit(
+                    new EventHandler<CellEditEvent<Entrada, String>>() {
+                        @Override
+                        public void handle(CellEditEvent<Entrada, String> t) {
+                            (t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                            ).setHistorico(t.getNewValue());
+                        }
+                    }
+            );
+
+            colunaValor.setCellFactory(TextFieldTableCell.<Entrada, Double>forTableColumn(new DoubleStringConverter()));
+            colunaValor.setOnEditCommit(
+                    new EventHandler<CellEditEvent<Entrada, Double>>() {
+                        @Override
+                        public void handle(CellEditEvent<Entrada, Double> t) {
+                            (t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                            ).setValor(t.getNewValue());
+                            atualizarTotalEntradas();
+                        }
+                    }
+            );
+        }catch (Exception e) {
+            System.out.println("Erro ao preencher colunas e editá-las - " + e.getClass() + " - " + e.getMessage());
+        }
+        try {
+            atualizarTotalEntradas();
+        }catch (Exception e) {
+            System.out.println("Erro ao setar total de entradas - " + e.getClass() + " - " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -107,7 +169,7 @@ public class Controller implements Initializable {
     @FXML
     protected void abrirVisualizacaoPorAno() {
         try {
-            Parent root1 = new FXMLLoader(getClass().getResource("/fenix/views/anos.fxml")).load();
+            Parent root1 = new FXMLLoader(getClass().getResource("/br/com/rafaelst/fenix/views/anos.fxml")).load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
@@ -123,7 +185,7 @@ public class Controller implements Initializable {
     @FXML
     protected void abrirSobre() {
         try {
-            Parent root1 = new FXMLLoader(getClass().getResource("/fenix/views/sobre.fxml")).load();
+            Parent root1 = new FXMLLoader(getClass().getResource("/br/com/rafaelst/fenix/views/sobre.fxml")).load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
@@ -156,5 +218,13 @@ public class Controller implements Initializable {
         } else {
             criarAlertaErro("Erro de execução", "Não é possível abrir esse link nesse computador.").show();
         }
+    }
+
+    public void atualizarTotalEntradas() {
+        double total = 0;
+        for (Entrada entrada : tabelaEntrada.getItems()) {
+            total += entrada.getValor();
+        }
+        campoTotalEntradas.setText(String.valueOf(total));
     }
 }
