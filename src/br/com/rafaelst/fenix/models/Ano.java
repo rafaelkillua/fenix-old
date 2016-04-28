@@ -2,19 +2,18 @@ package br.com.rafaelst.fenix.models;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Created by Rafael on 28/04/2016.
  */
 public class Ano {
     private final SimpleIntegerProperty id;
-    private final SimpleStringProperty ano;
+    private final SimpleIntegerProperty ano;
     private final SimpleDoubleProperty saldo;
 
-    private Ano(int id, String ano, double saldo){
+    private Ano(int id, int ano, double saldo){
         this.id = new SimpleIntegerProperty(id);
-        this.ano = new SimpleStringProperty(ano);
+        this.ano = new SimpleIntegerProperty(ano);
         this.saldo = new SimpleDoubleProperty(saldo);
     }
 
@@ -26,11 +25,11 @@ public class Ano {
         this.id.set(id);
     }
 
-    public String getAno() {
+    public int getAno() {
         return ano.get();
     }
 
-    public void setAno(String ano) {
+    public void setAno(int ano) {
         this.ano.set(ano);
     }
 

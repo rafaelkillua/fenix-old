@@ -14,7 +14,7 @@ public class Saida {
     private final SimpleDoubleProperty contas;
     private final SimpleDoubleProperty depositos;
 
-    private Saida(int id, String data, String historico, double contas, double depositos) {
+    public Saida(int id, String data, String historico, double contas, double depositos) {
         this.id = new SimpleIntegerProperty(id);
         this.data = new SimpleStringProperty(data);
         this.historico = new SimpleStringProperty(historico);
