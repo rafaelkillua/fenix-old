@@ -20,8 +20,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -241,10 +241,12 @@ public class Controller implements Initializable {
 
     private void apagarEntrada(Entrada entrada) {
         dadosEntrada.remove(entrada);
+        atualizarTodosOsCampos();
     }
 
     private void apagarSaida (Saida saida) {
         dadosSaida.remove(saida);
+        atualizarTodosOsCampos();
     }
 
     private void atualizarTotalEntradas() {
@@ -320,9 +322,7 @@ public class Controller implements Initializable {
     }
 
     private String getDataHoje(){
-        final Calendar calendar = Calendar.getInstance();
-        int dia = calendar.get(Calendar.DAY_OF_MONTH);
-        String mes = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
-        return dia + "/" + mes;
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM");
+        return dateFormat.format(Calendar.getInstance().getTime());
     }
 }
