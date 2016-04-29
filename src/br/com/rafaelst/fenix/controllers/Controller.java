@@ -93,18 +93,23 @@ public class Controller implements Initializable {
     @FXML
     protected void fecharMes() {
         TextInputDialog dialog = CriadorAlerta.criarTextInputDialog("Fechar Mês", "Digite o nome do mês a ser fechado", "Mês:");
+        Alert confirm = CriadorAlerta.criarAlertaConfirmacao("Isso irá apagar todos os dados de entrada e saída.");
 
         dialog.setResult(getMesHoje());
 
         dialog.showAndWait().ifPresent(name -> {
             if (!name.trim().equals("")) {
-                try {
-                    BancoDeDados.salvarMes(new Mes(-1, name, getTotalEntradas(), getTotalSaidas()));
-                    atualizarTodosOsTotais();
-                    abrirVisualizacaoPorAno();
-                } catch (SQLException | ClassNotFoundException e){
-                    CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
-                }
+                confirm.showAndWait().ifPresent(answer -> {
+                    if (answer == ButtonType.OK) {
+                        try {
+                            BancoDeDados.salvarMes(new Mes(-1, name, getTotalEntradas(), getTotalSaidas()));
+                            atualizarTodosOsTotais();
+                            abrirVisualizacaoPorAno();
+                        } catch (SQLException | ClassNotFoundException e) {
+                            CriadorAlerta.criarAlertaErro("Código C01", e.getClass() + " - " + e.getMessage());
+                        }
+                    }
+                });
             } else {
                 CriadorAlerta.criarAlertaErro("Erro de entrada", "Mês não pode ser vazio").showAndWait();
             }
@@ -123,7 +128,7 @@ public class Controller implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
-            CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage()).showAndWait();
+            CriadorAlerta.criarAlertaExcecao("Código C02", e.getClass() + " - " + e.getMessage()).showAndWait();
         }
     }
 
@@ -139,7 +144,7 @@ public class Controller implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
-            System.out.println("Erro ao abrir Sobre - " + e.getClass() + " - " + e.getMessage());
+            CriadorAlerta.criarAlertaExcecao("Código C03", e.getClass() + " - " + e.getMessage()).showAndWait();
         }
     }
 
@@ -162,26 +167,26 @@ public class Controller implements Initializable {
             try {
                 BancoDeDados.salvarEntrada(new Entrada(-1, campoData.getText(), textoHistorico, Double.parseDouble(campoEntradaValor.getText().replaceAll(",", "."))));
             } catch (Exception e) {
-                CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + e.getMessage()).showAndWait();
+                CriadorAlerta.criarAlertaExcecao("Código C04", e.getClass() + e.getMessage()).showAndWait();
             }
         }
         if (!campoSaidaConta.getText().isEmpty() && !campoSaidaDeposito.getText().isEmpty()) {
             try {
                 BancoDeDados.salvarSaida(new Saida(0, campoData.getText(), textoHistorico, Double.parseDouble(campoSaidaConta.getText()), Double.parseDouble(campoSaidaDeposito.getText())));
             } catch (Exception e) {
-                CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + e.getMessage()).showAndWait();
+                CriadorAlerta.criarAlertaExcecao("Código C05", e.getClass() + e.getMessage()).showAndWait();
             }
         } else if (!campoSaidaConta.getText().isEmpty()) {
             try {
                 BancoDeDados.salvarSaida(new Saida(0, campoData.getText(), textoHistorico, Double.parseDouble(campoSaidaConta.getText()), 0));
             } catch (Exception e) {
-                CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + e.getMessage()).showAndWait();
+                CriadorAlerta.criarAlertaExcecao("Código C06", e.getClass() + e.getMessage()).showAndWait();
             }
         } else if (!campoSaidaDeposito.getText().isEmpty()) {
             try {
                 BancoDeDados.salvarSaida(new Saida(0, campoData.getText(), textoHistorico, 0, Double.parseDouble(campoSaidaDeposito.getText())));
             } catch (Exception e) {
-                CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + e.getMessage()).showAndWait();
+                CriadorAlerta.criarAlertaExcecao("Código C07", e.getClass() + e.getMessage()).showAndWait();
             }
         }
         atualizarTodosOsTotais();
@@ -207,7 +212,7 @@ public class Controller implements Initializable {
                 try {
                     apagarEntrada(row.getItem());
                 } catch (SQLException|ClassNotFoundException e) {
-                    CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
+                    CriadorAlerta.criarAlertaExcecao("Código C08", e.getClass() + " - " + e.getMessage());
                 }
             });
             editarMenuItem.setOnAction(event -> {
@@ -218,7 +223,7 @@ public class Controller implements Initializable {
                 try {
                     apagarEntrada(temp);
                 } catch (SQLException|ClassNotFoundException e) {
-                    CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
+                    CriadorAlerta.criarAlertaExcecao("Código C09", e.getClass() + " - " + e.getMessage());
                 }
             });
             contextMenu.getItems().addAll(editarMenuItem, removerMenuItem);
@@ -238,7 +243,7 @@ public class Controller implements Initializable {
                 try {
                     apagarSaida(row.getItem());
                 } catch (SQLException|ClassNotFoundException e) {
-                    CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
+                    CriadorAlerta.criarAlertaExcecao("Código C11", e.getClass() + " - " + e.getMessage());
                 }
             });
             editarMenuItem.setOnAction(event -> {
@@ -250,7 +255,7 @@ public class Controller implements Initializable {
                 try {
                     apagarSaida(row.getItem());
                 } catch (SQLException|ClassNotFoundException e) {
-                    CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
+                    CriadorAlerta.criarAlertaExcecao("Código C12", e.getClass() + " - " + e.getMessage());
                 }
             });
             contextMenu.getItems().addAll(editarMenuItem, removerMenuItem);

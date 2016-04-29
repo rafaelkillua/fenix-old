@@ -53,7 +53,7 @@ public class SobreController implements Initializable {
             final URI link = new URI("http://www.rafaelst.com.br");
             abrirLink(link);
         } catch (URISyntaxException e) {
-            CriadorAlerta.criarAlertaErro("Exceção SC01", e.getClass() + " - " + e.getMessage()).showAndWait();
+            CriadorAlerta.criarAlertaExcecao("Código SC01", e.getClass() + " - " + e.getMessage()).showAndWait();
         }
     }
 
@@ -62,10 +62,10 @@ public class SobreController implements Initializable {
             try {
                 Desktop.getDesktop().browse(uri);
             } catch (IOException e) {
-                CriadorAlerta.criarAlertaErro("Erro de execução SC02", e.getClass() + " - " + e.getMessage()).showAndWait();
+                CriadorAlerta.criarAlertaExcecao("Código SC02", e.getClass() + " - " + e.getMessage()).showAndWait();
             }
         } else {
-            CriadorAlerta.criarAlertaErro("Erro de execução SC03", "Não é possível abrir esse link nesse computador.").showAndWait();
+            CriadorAlerta.criarAlertaErro("Código SC03", "Não é possível abrir esse link nesse computador.").showAndWait();
         }
     }
 }

@@ -1,6 +1,7 @@
 package br.com.rafaelst.fenix.controllers.util;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
 
 /**
@@ -16,9 +17,23 @@ public class CriadorAlerta {
     }
 
     public static Alert criarAlertaErro(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(header);
+        alert.setContentText(content);
+        return alert;
+    }
+
+    public static Alert criarAlertaExcecao(String header, String content) {
+        Alert alert = criarAlertaErro(header, content);
+        alert.setTitle("Exceção");
+        return alert;
+    }
+
+    public static Alert criarAlertaConfirmacao(String content) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+        alert.setHeaderText("Tem certeza disso?");
         alert.setContentText(content);
         return alert;
     }

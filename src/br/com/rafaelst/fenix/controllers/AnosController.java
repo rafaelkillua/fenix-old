@@ -6,9 +6,7 @@ import br.com.rafaelst.fenix.models.Ano;
 import br.com.rafaelst.fenix.models.Mes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -54,21 +52,30 @@ public class AnosController implements Initializable {
     @FXML
     protected void fecharAno() {
         TextInputDialog dialog = CriadorAlerta.criarTextInputDialog("Fechar Ano", "Digite o ano a ser fechado", "Ano:");
+        Alert confirm = CriadorAlerta.criarAlertaConfirmacao("Isso irá apagar todos os dados sobre os meses!");
 
         dialog.setResult(getAnoHoje());
 
         dialog.showAndWait().ifPresent(name -> {
             if (!name.trim().equals("")) {
                 try {
-                    BancoDeDados.salvarAno(new Ano(-1, Integer.parseInt(name), getSaldoMeses()));
+                    Integer.parseInt(name);
+                    confirm.showAndWait().ifPresent(answer -> {
+                        if (answer == ButtonType.OK) {
+                            try {
+                                BancoDeDados.salvarAno(new Ano(-1, Integer.parseInt(name), getSaldoMeses()));
+                            } catch (SQLException | ClassNotFoundException e) {
+                                CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
+                            }
+                        }
+                    });
                 } catch (NumberFormatException e) {
                     CriadorAlerta.criarAlertaErro("Erro de entrada", "Ano tem que ser número").showAndWait();
-                } catch (SQLException|ClassNotFoundException e) {
-                    CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
                 }
             } else {
                 CriadorAlerta.criarAlertaErro("Erro de entrada", "Ano não pode ser vazio").showAndWait();
             }
+
         });
     }
 

@@ -38,10 +38,10 @@ public class BancoDeDados {
             popularMeses();
             popularAnos();
         } catch (SQLException e) {
-            CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage()).showAndWait();
+            CriadorAlerta.criarAlertaExcecao("Código BD1", e.getClass() + " - " + e.getMessage()).showAndWait();
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage()).showAndWait();
+            CriadorAlerta.criarAlertaExcecao("Código BD2", e.getClass() + " - " + e.getMessage()).showAndWait();
         }
     }
 
