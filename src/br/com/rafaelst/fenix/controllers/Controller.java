@@ -166,8 +166,10 @@ public class Controller implements Initializable {
         if (!campoEntradaValor.getText().isEmpty()) {
             try {
                 BancoDeDados.salvarEntrada(new Entrada(-1, campoData.getText(), textoHistorico, Double.parseDouble(campoEntradaValor.getText().replaceAll(",", "."))));
-            } catch (Exception e) {
+            } catch (SQLException|ClassNotFoundException e) {
                 CriadorAlerta.criarAlertaExcecao("Código C04", e.getClass() + e.getMessage()).showAndWait();
+            } catch (NumberFormatException e) {
+                CriadorAlerta.criarAlertaErro("Dados inválidos", "Há algum campo com dados inválidos").showAndWait();
             }
         }
         if (!campoSaidaConta.getText().isEmpty() && !campoSaidaDeposito.getText().isEmpty()) {
