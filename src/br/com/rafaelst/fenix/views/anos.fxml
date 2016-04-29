@@ -16,13 +16,13 @@
    <children>
       <TableView fx:id="tabelaAnos" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-            <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID">
+            <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID" visible="false">
                 <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colunaAno" prefWidth="140.0" resizable="false" sortable="false" text="Ano">
+            <TableColumn fx:id="colunaAno" editable="false" prefWidth="169.0" resizable="false" text="Ano">
                 <cellValueFactory><PropertyValueFactory property="ano" /></cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colunaSaldo" prefWidth="160.0" resizable="false" text="Saldo">
+            <TableColumn fx:id="colunaSaldo" editable="false" prefWidth="171.0" resizable="false" text="Saldo">
                 <cellValueFactory><PropertyValueFactory property="saldo" /></cellValueFactory>
             </TableColumn>
         </columns>
@@ -31,21 +31,21 @@
       <Label text="Anos" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <TableView fx:id="tabelaAnoAtual" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
         <columns>
-            <TableColumn editable="false" prefWidth="40.0" resizable="false" text="ID">
+            <TableColumn editable="false" prefWidth="40.0" resizable="false" text="ID" visible="false">
                 <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colunaMes" prefWidth="137.0" resizable="false" sortable="false" text="Mês">
+            <TableColumn fx:id="colunaMes" editable="false" prefWidth="161.0" resizable="false" text="Mês">
                 <cellValueFactory><PropertyValueFactory property="mes" /></cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colunaEntradas" prefWidth="140.0" resizable="false" text="Entradas">
+            <TableColumn fx:id="colunaEntradas" editable="false" prefWidth="150.0" resizable="false" text="Entradas">
                 <cellValueFactory><PropertyValueFactory property="entradas" /></cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colunaSaidas" prefWidth="141.0" resizable="false" text="Saídas">
+            <TableColumn fx:id="colunaSaidas" editable="false" prefWidth="147.0" resizable="false" text="Saídas">
                 <cellValueFactory><PropertyValueFactory property="saidas" /></cellValueFactory>
             </TableColumn>
         </columns>
       </TableView>
-      <Button mnemonicParsing="false" text="Fechar Ano" onAction="#fecharAno" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#fecharAno" text="Fechar Ano" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Button fx:id="anosBotaoFechar" mnemonicParsing="false" onAction="#fecharJanela" text="X" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
    </children>
 </GridPane>

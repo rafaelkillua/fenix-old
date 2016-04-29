@@ -27,18 +27,18 @@ public class SobreController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            sobreGridPane.setOnMousePressed(event -> {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            });
-            sobreGridPane.setOnMouseDragged(event -> {
-                sobreGridPane.getScene().getWindow().setX(event.getScreenX() - xOffset);
-                sobreGridPane.getScene().getWindow().setY(event.getScreenY() - yOffset);
-            });
-        }catch (Exception e) {
-            System.out.println("Erro do GridPane - " + e.getClass() + " - " + e.getMessage());
-        }
+        ativaMovimentoJanela();
+    }
+
+    private void ativaMovimentoJanela() {
+        sobreGridPane.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        sobreGridPane.setOnMouseDragged(event -> {
+            sobreGridPane.getScene().getWindow().setX(event.getScreenX() - xOffset);
+            sobreGridPane.getScene().getWindow().setY(event.getScreenY() - yOffset);
+        });
     }
 
     @FXML
@@ -51,21 +51,21 @@ public class SobreController implements Initializable {
     protected void abrirSite() {
         try {
             final URI link = new URI("http://www.rafaelst.com.br");
-            open(link);
+            abrirLink(link);
         } catch (URISyntaxException e) {
-            CriadorAlerta.criarAlertaErro("Erro de entrada", e.getMessage()).show();
+            CriadorAlerta.criarAlertaErro("Exceção SC01", e.getClass() + " - " + e.getMessage()).showAndWait();
         }
     }
 
-    private void open(URI uri) {
+    private void abrirLink(URI uri) {
         if (Desktop.isDesktopSupported()) {
             try {
                 Desktop.getDesktop().browse(uri);
             } catch (IOException e) {
-                CriadorAlerta.criarAlertaErro("Erro de execução", e.getMessage()).show();
+                CriadorAlerta.criarAlertaErro("Erro de execução SC02", e.getClass() + " - " + e.getMessage()).showAndWait();
             }
         } else {
-            CriadorAlerta.criarAlertaErro("Erro de execução", "Não é possível abrir esse link nesse computador.").show();
+            CriadorAlerta.criarAlertaErro("Erro de execução SC03", "Não é possível abrir esse link nesse computador.").showAndWait();
         }
     }
 }

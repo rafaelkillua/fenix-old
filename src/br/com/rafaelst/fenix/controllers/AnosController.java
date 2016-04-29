@@ -1,15 +1,20 @@
 package br.com.rafaelst.fenix.controllers;
 
+import br.com.rafaelst.fenix.controllers.util.BancoDeDados;
 import br.com.rafaelst.fenix.controllers.util.CriadorAlerta;
 import br.com.rafaelst.fenix.models.Ano;
 import br.com.rafaelst.fenix.models.Mes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 /**
@@ -24,17 +29,15 @@ public class AnosController implements Initializable {
     @FXML private Button anosBotaoFechar;
 
     @FXML private TableView<Ano> tabelaAnos;
-    @FXML private TableColumn colunaAno;
-    @FXML private TableColumn colunaSaldo;
-
     @FXML private TableView<Mes> tabelaAnoAtual;
-    @FXML private TableColumn colunaMes;
-    @FXML private TableColumn colunaEntradas;
-    @FXML private TableColumn colunaSaidas;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ativaMovimentoJanela();
+
+        tabelaAnoAtual.setItems(BancoDeDados.getDadosMeses());
+        tabelaAnos.setItems(BancoDeDados.getDadosAnos());
+
     }
 
     private void ativaMovimentoJanela() {
@@ -51,18 +54,20 @@ public class AnosController implements Initializable {
     @FXML
     protected void fecharAno() {
         TextInputDialog dialog = CriadorAlerta.criarTextInputDialog("Fechar Ano", "Digite o ano a ser fechado", "Ano:");
-        Alert alert = CriadorAlerta.criarAlertaErro("Erro de entrada", "Ano tem que ser número");
-        Alert alertVazio = CriadorAlerta.criarAlertaErro("Erro de entrada", "Ano não pode ser vazio");
+
+        dialog.setResult(getAnoHoje());
 
         dialog.showAndWait().ifPresent(name -> {
             if (!name.trim().equals("")) {
                 try {
-                    System.out.println(Integer.parseInt(name));
-                } catch (Exception e) {
-                    alert.showAndWait();
+                    BancoDeDados.salvarAno(new Ano(-1, Integer.parseInt(name), getSaldoMeses()));
+                } catch (NumberFormatException e) {
+                    CriadorAlerta.criarAlertaErro("Erro de entrada", "Ano tem que ser número").showAndWait();
+                } catch (SQLException|ClassNotFoundException e) {
+                    CriadorAlerta.criarAlertaErro("Exceção", e.getClass() + " - " + e.getMessage());
                 }
             } else {
-                alertVazio.showAndWait();
+                CriadorAlerta.criarAlertaErro("Erro de entrada", "Ano não pode ser vazio").showAndWait();
             }
         });
     }
@@ -71,5 +76,17 @@ public class AnosController implements Initializable {
     protected void fecharJanela() {
         Stage stage = (Stage) anosBotaoFechar.getScene().getWindow();
         stage.close();
+    }
+
+    private double getSaldoMeses() {
+        double total = 0;
+        for (Mes mes : BancoDeDados.getDadosMeses()) {
+            total += mes.getEntradas() - mes.getSaidas();
+        }
+        return total;
+    }
+
+    private String getAnoHoje(){
+        return String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
     }
 }
