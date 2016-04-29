@@ -18,8 +18,8 @@ public class BancoDeDados {
     private static Statement afirmacao = null;
     private static ResultSet resultados = null;
     private static final String DRIVER = "org.sqlite.JDBC";
-    private static final String URL = "jdbc:sqlite:C:/Users/Rafael/workspace/Fenix/fenix.db";
-    //private static final String URL = "jdbc:sqlite:fenix.db";
+    //private static final String URL = "jdbc:sqlite:C:/Users/Rafael/workspace/Fenix/database.db";
+    private static final String URL = "jdbc:sqlite:database.db";
 
     private static ObservableList<Entrada> dadosEntrada = FXCollections.observableArrayList();
     private static ObservableList<Saida> dadosSaida = FXCollections.observableArrayList();
@@ -243,7 +243,7 @@ public class BancoDeDados {
         afirmacao.executeUpdate("CREATE TABLE IF NOT EXISTS entradas (id INTEGER PRIMARY KEY ASC AUTOINCREMENT NOT NULL UNIQUE DEFAULT (0), " +
                 "data TEXT NOT NULL, " +
                 "historico TEXT NOT NULL, " +
-                "entrada DOUBLE NOT NULL);");
+                "valor DOUBLE NOT NULL);");
         fecharConexao();
     }
 
