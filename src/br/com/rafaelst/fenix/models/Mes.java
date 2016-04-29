@@ -13,7 +13,7 @@ public class Mes {
     private final SimpleDoubleProperty entradas;
     private final SimpleDoubleProperty saidas;
 
-    private Mes(int id, String mes, double entradas, double saidas){
+    public Mes(int id, String mes, double entradas, double saidas){
         this.id = new SimpleIntegerProperty(id);
         this.mes = new SimpleStringProperty(mes);
         this.entradas = new SimpleDoubleProperty(entradas);

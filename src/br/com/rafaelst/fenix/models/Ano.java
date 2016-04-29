@@ -11,7 +11,7 @@ public class Ano {
     private final SimpleIntegerProperty ano;
     private final SimpleDoubleProperty saldo;
 
-    private Ano(int id, int ano, double saldo){
+    public Ano(int id, int ano, double saldo){
         this.id = new SimpleIntegerProperty(id);
         this.ano = new SimpleIntegerProperty(ano);
         this.saldo = new SimpleDoubleProperty(saldo);
