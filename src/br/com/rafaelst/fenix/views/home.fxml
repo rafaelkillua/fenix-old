@@ -10,10 +10,11 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="379.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="694.0" minHeight="10.0" prefHeight="555.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="694.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="694.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="379.0" minHeight="10.0" prefHeight="56.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="694.0" minHeight="10.0" prefHeight="510.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="694.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="694.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="694.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label prefHeight="47.0" prefWidth="205.0" text="Fênix Convites" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -27,7 +28,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tabelaEntrada" editable="true" prefHeight="515.0" prefWidth="1024.0">
+                        <TableView fx:id="tabelaEntrada" editable="true" prefHeight="463.0" prefWidth="1024.0">
                           <columns>
                               <TableColumn prefWidth="40.0" resizable="false" sortable="false" text="ID">
                                 <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
@@ -38,7 +39,7 @@
                               <TableColumn fx:id="colunaHistoricoEntrada" prefWidth="684.0" resizable="false" sortable="false" text="Histórico">
                                 <cellValueFactory><PropertyValueFactory property="historico" /></cellValueFactory>
                               </TableColumn>
-                              <TableColumn fx:id="colunaValor" prefWidth="149.0" resizable="false" text="Valor">
+                              <TableColumn fx:id="colunaValor" prefWidth="150.0" resizable="false" text="Valor">
                                 <cellValueFactory><PropertyValueFactory property="valor" /></cellValueFactory>
                               </TableColumn>
                           </columns>
@@ -76,68 +77,68 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Label text="Total de Entradas:" GridPane.rowIndex="2">
+      <Label text="Total de Entradas:" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin></Label>
-      <TextField fx:id="campoTotalEntradas" editable="false" layoutX="200.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <TextField fx:id="campoTotalEntradas" editable="false" layoutX="200.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="160.0" />
          </GridPane.margin>
       </TextField>
-      <Label text="Total de Contas:" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Label text="Total de Contas:" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="450.0" top="25.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="campoTotalContas" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <TextField fx:id="campoTotalContas" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="560.0" top="20.0" />
          </GridPane.margin>
       </TextField>
-      <Label text="Total de Depósitos:" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Label text="Total de Depósitos:" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="720.0" top="25.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="campoTotalDepositos" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <TextField fx:id="campoTotalDepositos" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="850.0" top="20.0" />
          </GridPane.margin>
       </TextField>
-      <Label text="Total de Saídas:" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Label text="Total de Saídas:" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="15.0" left="600.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="campoTotalSaidas" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <TextField fx:id="campoTotalSaidas" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" left="707.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="campoSaldo" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+       <Label text="Saldo Geral:" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+           <GridPane.margin>
+               <Insets left="650.0" />
+           </GridPane.margin>
+       </Label>
+      <TextField fx:id="campoSaldo" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="735.0" />
          </GridPane.margin>
       </TextField>
-      <Label text="Saldo Geral:" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-         <GridPane.margin>
-            <Insets left="650.0" />
-         </GridPane.margin>
-      </Label>
-      <Button mnemonicParsing="false" onAction="#fecharMes" text="Fechar Mês" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#fecharMes" text="Fechar Mês" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="905.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="botaoVisualizarPorAno" mnemonicParsing="false" onAction="#abrirVisualizacaoPorAno" text="Visualizar por Ano" GridPane.rowIndex="3">
+      <Button fx:id="botaoVisualizarPorAno" mnemonicParsing="false" onAction="#abrirVisualizacaoPorAno" text="Visualizar por Ano" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="120.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="botaoSobre" mnemonicParsing="false" onAction="#abrirSobre" text="Sobre" GridPane.rowIndex="3">
+      <Button fx:id="botaoSobre" mnemonicParsing="false" onAction="#abrirSobre" text="Sobre" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets left="450.0" />
+            <Insets right="55.0" />
          </GridPane.margin>
       </Button>
       <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharJanela" prefHeight="0.0" prefWidth="0.0" text="X" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
@@ -146,5 +147,17 @@
             <Insets right="28.0" />
          </GridPane.margin>
       </Button>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <Label layoutX="397.0" layoutY="11.0" text="Entrada:" />
+            <Label layoutX="608.0" layoutY="11.0" text="Saída:" />
+            <TextField fx:id="campoData" layoutX="26.0" layoutY="6.0" prefHeight="31.0" prefWidth="107.0" promptText="Data" />
+            <TextField fx:id="campoHistorico" layoutX="133.0" layoutY="6.0" prefHeight="31.0" prefWidth="258.0" promptText="Histórico" />
+            <TextField fx:id="campoEntradaValor" layoutX="458.0" layoutY="6.0" prefHeight="31.0" prefWidth="140.0" promptText="Valor" />
+            <TextField fx:id="campoSaidaConta" layoutX="655.0" layoutY="6.0" prefWidth="140.0" promptText="Conta" />
+            <TextField fx:id="campoSaidaDeposito" layoutX="795.0" layoutY="6.0" prefHeight="31.0" prefWidth="140.0" promptText="Depósito" />
+            <Button fx:id="botaoEntradaAdd" onAction="#adicionar" layoutX="951.0" layoutY="6.0" mnemonicParsing="false" text="Add" />
+         </children>
+      </AnchorPane>
    </children>
 </GridPane>
