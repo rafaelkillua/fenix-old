@@ -51,10 +51,8 @@ public class AnosController implements Initializable {
 
     @FXML
     protected void fecharAno() {
-        TextInputDialog dialog = CriadorAlerta.criarTextInputDialog("Fechar Ano", "Digite o ano a ser fechado", "Ano:");
+        TextInputDialog dialog = CriadorAlerta.criarTextInputDialog("Fechar Ano", "Digite o ano a ser fechado", "Ano:", getAnoHoje());
         Alert confirm = CriadorAlerta.criarAlertaConfirmacao("Isso irá apagar todos os dados sobre os meses!");
-
-        dialog.setResult(getAnoHoje());
 
         dialog.showAndWait().ifPresent(name -> {
             if (!name.trim().equals("")) {

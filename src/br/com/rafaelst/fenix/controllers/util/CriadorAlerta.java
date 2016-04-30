@@ -8,8 +8,8 @@ import javafx.scene.control.TextInputDialog;
  * Created by Rafael on 28/04/2016.
  */
 public class CriadorAlerta {
-    public static TextInputDialog criarTextInputDialog(String titulo, String header, String pergunta) {
-        TextInputDialog dialog = new TextInputDialog();
+    public static TextInputDialog criarTextInputDialog(String titulo, String header, String pergunta, String valorInicial) {
+        TextInputDialog dialog = new TextInputDialog(valorInicial);
         dialog.setTitle(titulo);
         dialog.setHeaderText(header);
         dialog.setContentText(pergunta);

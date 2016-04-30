@@ -92,10 +92,8 @@ public class Controller implements Initializable {
 
     @FXML
     protected void fecharMes() {
-        TextInputDialog dialog = CriadorAlerta.criarTextInputDialog("Fechar Mês", "Digite o nome do mês a ser fechado", "Mês:");
+        TextInputDialog dialog = CriadorAlerta.criarTextInputDialog("Fechar Mês", "Digite o nome do mês a ser fechado", "Mês:", getMesHoje());
         Alert confirm = CriadorAlerta.criarAlertaConfirmacao("Isso irá apagar todos os dados de entrada e saída.");
-
-        dialog.setResult(getMesHoje());
 
         dialog.showAndWait().ifPresent(name -> {
             if (!name.trim().equals("")) {
