@@ -18,7 +18,6 @@ public class BancoDeDados {
     private static Statement afirmacao = null;
     private static ResultSet resultados = null;
     private static final String DRIVER = "org.sqlite.JDBC";
-    //private static final String URL = "jdbc:sqlite:C:/Users/Rafael/workspace/Fenix/database.db";
     private static final String URL = "jdbc:sqlite:database.db";
 
     private static ObservableList<Entrada> dadosEntrada = FXCollections.observableArrayList();
