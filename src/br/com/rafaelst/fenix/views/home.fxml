@@ -2,10 +2,10 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<GridPane fx:id="gridPane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.rafaelst.fenix.controllers.Controller">
+<GridPane fx:id="gridPane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.rafaelst.fenix.controllers.Controller">
     <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -22,61 +22,6 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <TabPane tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
-        <tabs>
-          <Tab closable="false" text="Entrada">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="tabelaEntrada" editable="true" prefHeight="468.0" prefWidth="1024.0">
-                          <columns>
-                              <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID" visible="false">
-                                <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
-                              </TableColumn>
-                              <TableColumn fx:id="colunaDataEntrada" editable="false" prefWidth="110.0" resizable="false" text="Data">
-                                <cellValueFactory><PropertyValueFactory property="data" /></cellValueFactory>
-                              </TableColumn>
-                              <TableColumn editable="false" prefWidth="767.0" resizable="false" sortable="false" text="Histórico">
-                                <cellValueFactory><PropertyValueFactory property="historico" /></cellValueFactory>
-                              </TableColumn>
-                              <TableColumn fx:id="colunaValor" editable="false" prefWidth="144.0" resizable="false" text="Valor">
-                                <cellValueFactory><PropertyValueFactory property="valor" /></cellValueFactory>
-                              </TableColumn>
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab closable="false" text="Saída">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="tabelaSaida" prefHeight="516.0" prefWidth="1024.0">
-                          <columns>
-                              <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID" visible="false">
-                                <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
-                              </TableColumn>
-                              <TableColumn fx:id="colunaDataSaida" editable="false" prefWidth="140.0" resizable="false" text="Data">
-                                 <cellValueFactory><PropertyValueFactory property="data" /></cellValueFactory>
-                              </TableColumn>
-                              <TableColumn editable="false" prefWidth="580.0" resizable="false" sortable="false" text="Histórico">
-                                <cellValueFactory><PropertyValueFactory property="historico" /></cellValueFactory>
-                              </TableColumn>
-                              <TableColumn fx:id="colunaContas" editable="false" minWidth="0.0" prefWidth="151.0" resizable="false" text="Contas">
-                                  <cellValueFactory><PropertyValueFactory property="contas" /></cellValueFactory>
-                              </TableColumn>
-                              <TableColumn fx:id="colunaDepositos" editable="false" prefWidth="150.0" resizable="false" text="Depósitos">
-                                  <cellValueFactory><PropertyValueFactory property="depositos" /></cellValueFactory>
-                              </TableColumn>
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
       <Label text="Total de Entradas:" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="40.0" />
@@ -84,26 +29,6 @@
       <Label fx:id="labelTotalEntradas" layoutX="200.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="R$: " GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="160.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Total de Contas:" GridPane.rowIndex="3" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="450.0" top="25.0" />
-         </GridPane.margin>
-      </Label>
-      <Label fx:id="labelTotalContas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="R$: " GridPane.rowIndex="3" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="560.0" top="25.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="Total de Depósitos:" GridPane.rowIndex="3" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="720.0" top="25.0" />
-         </GridPane.margin>
-      </Label>
-      <Label fx:id="labelTotalDepositos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="R$: " GridPane.rowIndex="3" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="850.0" top="25.0" />
          </GridPane.margin>
       </Label>
       <Label text="Total de Saídas:" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
@@ -126,14 +51,9 @@
             <Insets left="735.0" />
          </GridPane.margin>
       </Label>
-      <Button mnemonicParsing="false" onAction="#fecharMes" text="Fechar Mês" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" text="Relatórios" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="905.0" />
-         </GridPane.margin>
-      </Button>
-      <Button fx:id="botaoVisualizarPorAno" mnemonicParsing="false" onAction="#abrirVisualizacaoPorAno" text="Visualizar por Ano" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets left="120.0" />
          </GridPane.margin>
       </Button>
       <Button fx:id="botaoSobre" mnemonicParsing="false" onAction="#abrirSobre" text="Sobre" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
@@ -149,15 +69,30 @@
        <Button fx:id="botaoFechar" mnemonicParsing="false" onAction="#fecharJanela" prefHeight="0.0" prefWidth="0.0" text="X" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
-            <Label layoutX="397.0" layoutY="11.0" text="Entrada:" />
-            <Label layoutX="608.0" layoutY="11.0" text="Saída:" />
-            <TextField fx:id="campoData" layoutX="26.0" layoutY="6.0" prefHeight="31.0" prefWidth="107.0" promptText="Data" />
-            <TextField fx:id="campoHistorico" layoutX="133.0" layoutY="6.0" prefHeight="31.0" prefWidth="258.0" promptText="Histórico" />
-            <TextField fx:id="campoEntradaValor" layoutX="458.0" layoutY="6.0" prefHeight="31.0" prefWidth="140.0" promptText="Valor" />
-            <TextField fx:id="campoSaidaConta" layoutX="655.0" layoutY="6.0" prefWidth="140.0" promptText="Conta" />
-            <TextField fx:id="campoSaidaDeposito" layoutX="795.0" layoutY="6.0" prefHeight="31.0" prefWidth="140.0" promptText="Depósito" />
-            <Button fx:id="botaoEntradaAdd" layoutX="951.0" layoutY="6.0" mnemonicParsing="false" onAction="#adicionar" text="Add" />
+            <TextField fx:id="campoDescricao" layoutX="14.0" layoutY="6.0" prefHeight="31.0" prefWidth="772.0" promptText="Descrição" />
+            <TextField fx:id="campoValor" layoutX="800.0" layoutY="6.0" prefHeight="31.0" prefWidth="140.0" promptText="Valor" />
+            <Button fx:id="botaoEntradaAdd" layoutX="954.0" layoutY="6.0" mnemonicParsing="false" onAction="#adicionar" text="Add" />
          </children>
       </AnchorPane>
+  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      <TableView fx:id="tabelaTransacoes" editable="true" prefHeight="468.0" prefWidth="1024.0" GridPane.rowIndex="1">
+        <columns>
+            <TableColumn editable="false" prefWidth="40.0" resizable="false" sortable="false" text="ID" visible="false">
+              <cellValueFactory>
+                  <PropertyValueFactory property="id" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" prefWidth="826.0" resizable="false" sortable="false" text="Histórico">
+              <cellValueFactory>
+                  <PropertyValueFactory property="historico" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colunaValor" editable="false" prefWidth="197.0" resizable="false" text="Valor">
+              <cellValueFactory>
+                  <PropertyValueFactory property="valor" />
+               </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
    </children>
 </GridPane>

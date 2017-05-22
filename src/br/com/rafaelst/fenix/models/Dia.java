@@ -10,16 +10,14 @@ import javafx.collections.ObservableList;
  */
 public class Dia {
     private final SimpleIntegerProperty id;
-    private final SimpleLongProperty dia;
-    private final SimpleListProperty listaEntradas;
-    private final SimpleListProperty listaSaidas;
+    private final SimpleLongProperty data;
+    private final SimpleListProperty listaTransacoes;
 
 
-    public Dia(int id, long dia, ObservableList<Entrada> entradas, ObservableList<Saida> saidas){
+    public Dia(int id, long data, ObservableList<Transacao> transacoes){
         this.id = new SimpleIntegerProperty(id);
-        this.dia = new SimpleLongProperty(dia);
-        this.listaEntradas = new SimpleListProperty(entradas);
-        this.listaSaidas = new SimpleListProperty(saidas);
+        this.data = new SimpleLongProperty(data);
+        this.listaTransacoes = new SimpleListProperty(transacoes);
     }
 
     public int getId() {
@@ -30,27 +28,19 @@ public class Dia {
         this.id.set(id);
     }
 
-    public long getDia() {
-        return dia.get();
+    public long getData() {
+        return data.get();
     }
 
-    public void setDia(int ano) {
-        this.dia.set(ano);
+    public void setData(long data) {
+        this.data.set(data);
     }
 
-    public ObservableList<Entrada> getListaEntradas() {
-        return listaEntradas.get();
+    public ObservableList<Transacao> getListaTransacoes() {
+        return listaTransacoes.get();
     }
 
-    public void setListaEntradas(ObservableList<Entrada> listaEntradas) {
-        this.listaEntradas.set(listaEntradas);
-    }
-
-    public ObservableList<Saida> getListaSaidas() {
-        return listaSaidas.get();
-    }
-
-    public void setListaSaidas(ObservableList<Saida> listaSaidas) {
-        this.listaSaidas.set(listaSaidas);
+    public void setListaTransacoes(ObservableList<Transacao> listaTransacoes) {
+        this.listaTransacoes.set(listaTransacoes);
     }
 }
